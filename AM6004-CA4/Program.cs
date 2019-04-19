@@ -21,13 +21,15 @@ namespace AM6004_CA4
             int count = 0;
             while(i++ < 5)
             {
-                Console.WriteLine(count++);
+                Console.WriteLine(++count);
             }
 
+            i = 0;
             count = 0;
+            Console.WriteLine("Second Loop");
             while(++i < 5)
             {
-                Console.WriteLine(count++);
+                Console.WriteLine(++count);
             }
 
             Console.Read();
