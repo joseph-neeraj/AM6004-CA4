@@ -16,35 +16,33 @@ namespace AM6004_CA4
             double[] x0 = {-1, 2}; // Sure ??
             int dim = 2; // WTH is this ?
 
-            //MinFinder.GradDescent(BealesFunction, BealesPartialDerivative, x0, alpha, dim, Tol, N);
-            int i = 0;
-            int count = 0;
-            while(i++ < 5)
-            {
-                Console.WriteLine(++count);
-            }
-
-            i = 0;
-            count = 0;
-            Console.WriteLine("Second Loop");
-            while(++i < 5)
-            {
-                Console.WriteLine(++count);
-            }
-
-            Console.Read();
+            MinFinder.GradDescent(BealesFunction, BealesPartialDerivative, x0, alpha, dim, Tol, N);
+           
         }
 
-        private static double BealesFunction(double[] x)
+        private static double BealesFunction(double[] xArray)
         {
-            return Math.Pow((1.5 - x[0] + x[0] * x[1]), 2) 
-                + Math.Pow((2.25 - x[0] + x[0] * x[1] * x[1]), 2)
-                + Math.Pow((2.625 - x[0] + x[0] * x[1] * x[1] * x[1]), 2);
+            double x = xArray[0];
+            double y = xArray[1];
+            return Math.Pow((1.5 - x + x * y), 2) 
+                + Math.Pow((2.25 - x + x * y * y), 2)
+                + Math.Pow((2.625 - x + x * y * y * y), 2);
         }
 
-        private static double[] BealesPartialDerivative(double[] x)
+        private static double[] BealesPartialDerivative(double[] xArray)
         {
-            return new double[] { };
+            double x = xArray[0];
+            double y = xArray[1];
+
+            double dfdx = 2 * (1.5 - x + x * y) * (y - 1)
+                + 2 * (2.25 - x + x * y * y) * (y * y - 1)
+                + 2 * (2.625 - x + x * y * y * y) * (y * y * y - 1);
+
+            double dfdy = 2 * (1.5 - x + x * y) * x
+                + 2 * (2.25 - x + x * y * y) * 2 * x * y
+                + 2*(2.625 - x + x * y * y * y) * 3 * x * y * y;
+
+            return new double[] { dfdx, dfdy };
         }
     }
 }
