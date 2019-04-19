@@ -14,8 +14,23 @@ namespace AM6004_CA4
             double Tol = 0.001;
             double N = 1000;
             double[] x0 = {-1, 2}; // Sure ??
+            int dim = 2; // WTH is this ?
 
-            MinFinder.GradDescent(BealesFunction, BealesPartialDerivative, x0, alpha, dim, Tol, N);
+            //MinFinder.GradDescent(BealesFunction, BealesPartialDerivative, x0, alpha, dim, Tol, N);
+            int i = 0;
+            int count = 0;
+            while(i++ < 5)
+            {
+                Console.WriteLine(count++);
+            }
+
+            count = 0;
+            while(++i < 5)
+            {
+                Console.WriteLine(count++);
+            }
+
+            Console.Read();
         }
 
         private static double BealesFunction(double[] x)
