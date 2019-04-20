@@ -12,7 +12,7 @@ namespace AM6004_CA4
         {
             double alpha = 0.01;
             double Tol = 0.001;
-            double N = 1000;
+            int N = 1000;
             double[] x0 = {-1, 2}; // Sure ??
             int dim = 2; // WTH is this ?
 
