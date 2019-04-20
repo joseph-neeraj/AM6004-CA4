@@ -16,8 +16,8 @@ namespace AM6004_CA4
 
             // Make a maximum of N iterations
             int numIterations = 0;
-            double[] prevValueArray = {x[0], x[1]};
-            double[] newValueArray = { double.MinValue, double.MinValue };
+            double[] prevValueArray = {double.MinValue, double.MinValue};
+            double[] newValueArray = { x[0], x[1] };
 
             while(numIterations++ < N && Math.Abs(g(prevValueArray) - g(newValueArray)) > Tol)
             {
@@ -30,9 +30,16 @@ namespace AM6004_CA4
 
                 double xNew = xPrev + alpha * xGradient;
                 double yNew = yPrev + alpha * yGradient;
+
+                // Copy the new values into the prev values
+                Array.Copy(newValueArray, prevValueArray, prevValueArray.Length);
+
+                // replace the content of newValueArray with the new values.
+                newValueArray[0] = xNew;
+                newValueArray[1] = yNew;
             }
 
-            return new double[]{ };
+            return newValueArray;
 
         }
     }
