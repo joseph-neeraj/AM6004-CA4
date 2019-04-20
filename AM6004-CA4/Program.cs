@@ -11,12 +11,14 @@ namespace AM6004_CA4
         static void Main(string[] args)
         {
             double alpha = 0.01;
+            double gamma = 0.8;
             double Tol = 0.001;
             int N = 1000;
             double[] x0 = {-1, 2}; // Sure ??
             int dim = 2; // WTH is this ?
 
             double[] result = MinFinder.GradDescent(BealesFunction, BealesPartialDerivative, x0, alpha, dim, Tol, N);
+            //double[] result = MinFinder.GradDescentMOM(BealesFunction, BealesPartialDerivative, x0, alpha, gamma, dim, Tol, N);
 
 
             Console.WriteLine("Done !!");
