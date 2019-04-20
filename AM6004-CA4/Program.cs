@@ -16,7 +16,12 @@ namespace AM6004_CA4
             double[] x0 = {-1, 2}; // Sure ??
             int dim = 2; // WTH is this ?
 
-            MinFinder.GradDescent(BealesFunction, BealesPartialDerivative, x0, alpha, dim, Tol, N);
+            double[] result = MinFinder.GradDescent(BealesFunction, BealesPartialDerivative, x0, alpha, dim, Tol, N);
+
+
+            Console.WriteLine("Done !!");
+            Console.WriteLine("Result : " + result[0] + "," + result[1]);
+            Console.ReadLine();
            
         }
 

@@ -13,12 +13,13 @@ namespace AM6004_CA4
         {
             // Make a maximum of N iterations
             int numIterations = 0;
-            double[] prevValueArray = {double.MinValue, double.MinValue};
-            double[] newValueArray = { x[0], x[1] };
+            double[] prevValueArray = { x[0], x[1] };
+            double[] newValueArray = { x[0], x[1]};
 
-            while(numIterations++ < N && Math.Abs(g(prevValueArray) - g(newValueArray)) > Tol)
+            while(numIterations++ < N 
+                && ((Math.Abs(g(prevValueArray) - g(newValueArray)) > Tol) || numIterations == 1)) // do not make the tolerance check if its the first iteration
             {
-                double[] gPrimes = gp(prevValueArray);
+                double[] gPrimes = gp(newValueArray);
                 double xGradient = gPrimes[0];
                 double yGradient = gPrimes[1];
 
@@ -34,7 +35,7 @@ namespace AM6004_CA4
                 double xNew = xPrev - alpha * xGradient;
                 double yNew = yPrev - alpha * yGradient;
 
-                // Copy the new values into the prev values
+                // Copy the newValueArray into the prevValueArray
                 Array.Copy(newValueArray, prevValueArray, newValueArray.Length);
 
                 // replace the content of newValueArray with the new values.
