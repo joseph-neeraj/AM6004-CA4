@@ -29,11 +29,13 @@ namespace AM6004_CA4
                     break;
                 }
 
-                double xPrev = prevValueArray[0];
-                double yPrev = prevValueArray[1];
+                double xPrev = newValueArray[0];
+                double yPrev = newValueArray[1];
 
                 double xNew = xPrev - alpha * xGradient;
                 double yNew = yPrev - alpha * yGradient;
+
+                Console.WriteLine("x, y, g = " + xNew + ", " + yNew + ", " + g(new double[] { xNew, yNew} ));
 
                 // Copy the newValueArray into the prevValueArray
                 Array.Copy(newValueArray, prevValueArray, newValueArray.Length);
@@ -43,6 +45,7 @@ namespace AM6004_CA4
                 newValueArray[1] = yNew;
             }
 
+            Console.WriteLine("Num Iterations = " + numIterations);
             if (numIterations == N)
             {
                 Console.WriteLine("Max Iterations reached");
@@ -64,7 +67,9 @@ namespace AM6004_CA4
             double viy = 0;
 
             while (numIterations++ < N
-                && ((Math.Abs(g(prevValueArray) - g(newValueArray)) > Tol) || numIterations == 1)) // do not make the tolerance check if its the first iteration
+                //)
+               && ((Math.Abs(g(prevValueArray) - g(newValueArray)) > Tol) || numIterations == 1)) // do not make the tolerance check if its the first iteration
+             //   && (((Math.Abs(prevValueArray[0] - newValueArray[0]) > Tol)&&(Math.Abs(prevValueArray[1] - newValueArray[1]) > Tol)) || numIterations == 1))
             {
                 double[] gPrimes = gp(newValueArray);
                 double xGradient = gPrimes[0];
@@ -76,14 +81,16 @@ namespace AM6004_CA4
                     break;
                 }
 
-                double xPrev = prevValueArray[0];
-                double yPrev = prevValueArray[1];
+                double xPrev = newValueArray[0];
+                double yPrev = newValueArray[1];
 
                 vix = gamma * vix + alpha * xGradient;
                 viy = gamma * viy + alpha * yGradient;
 
                 double xNew = xPrev - vix;
                 double yNew = yPrev - viy;
+
+                Console.WriteLine("x, y, g = " + xNew + ", " + yNew + ", " + g(new double[] { xNew, yNew }));
 
                 // Copy the newValueArray into the prevValueArray
                 Array.Copy(newValueArray, prevValueArray, newValueArray.Length);
