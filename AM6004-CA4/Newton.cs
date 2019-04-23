@@ -47,6 +47,10 @@ namespace AM6004_CA4
                     w2[i] = w2[i - 1] + (k12 + 2 * k22 + 2 * k32 + k42) / 6;
 
                     double kp11 = h * u2;
+                    double kp12 = h * (fy(x, w1[i - 1], w2[i - 1]) * u1 + fyp(x, w1[i - 1], w2[i - 1])*u2);
+                    double kp21 = h * (u2 + kp12 / 2);
+                    double kp22 = h * (fy(x + h / 2, w1[i - 1], w2[i - 1]) * (u1 + kp11 / 2)
+                        +fyp(x + h/2,w1[i-1],w2[i-1]) * (u2 + kp12));
 
                 }
             }
