@@ -59,9 +59,25 @@ namespace AM6004_CA4
                     double kp42 = h * (fy(x + h, w1[i-1],w2[i-1])*(u1+kp31)
                         + fyp(x + h, w1[i - 1], w2[i - 1])*(u2 + kp32));
 
-
+                    u1 = u1 + (kp11 + 2 * kp21 + 2 * kp31 + kp41) / 6;
+                    u2 = u2 + (kp12 + 2 * kp22 + 2 * kp32 + kp42) / 6;
                 }
+
+                if ((Math.Abs(w1[N]) - beta) <= Tol) {
+                    for (int i = 0; i <= N; i++)
+                    {
+                        double x = a + i * h;
+                        // output x, w1[i] w2[i]
+                    }
+
+                    // return; what ?
+                }
+
+                tk = tk - ((w1[N] - beta) / u1);
+                k++;
             }
+
+            Console.WriteLine("Failed !! Max Iterations exceeded.");
 
             return new double[] { };
         }
