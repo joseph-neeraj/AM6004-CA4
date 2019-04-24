@@ -68,33 +68,32 @@ namespace AM6004_CA4
                     double kp22 = h * (fy(x + h / 2, w[i - 1, 0], w[i - 1, 1]) * (u1 + kp11 / 2)
                         +fyp(x + h/2,w[i - 1, 0],w[i - 1, 1]) * (u2 + kp12));
                     double kp31 = h * (u2 + kp22 / 2);
-                    double kp32 = h * (fy(x + h / 2, w1[i - 1], w2[i - 1]) * (u1 + kp21 / 2)
-                        + fyp(x + h / 2, w1[i - 1], w2[i - 1])*(u2 + kp22/2));
+                    //double kp32 = h * (fy(x + h / 2, w1[i - 1], w2[i - 1]) * (u1 + kp21 / 2)
+                    //    + fyp(x + h / 2, w1[i - 1], w2[i - 1])*(u2 + kp22/2));
+                    double kp32 = h * (fy(x + h / 2, w[i - 1, 0], w[i - 1, 1]) * (u1 + kp21 / 2)
+                        + fyp(x + h / 2, w[i - 1, 0], w[i - 1, 1]) * (u2 + kp22 / 2));
                     double kp41 = h * (u2 + kp32);
-                    double kp42 = h * (fy(x + h, w1[i-1],w2[i-1])*(u1+kp31)
-                        + fyp(x + h, w1[i - 1], w2[i - 1])*(u2 + kp32));
+                    //double kp42 = h * (fy(x + h, w1[i-1],w2[i-1])*(u1+kp31)
+                    //    + fyp(x + h, w1[i - 1], w2[i - 1])*(u2 + kp32));
+                    double kp42 = h * (fy(x + h, w[i - 1, 0], w[i - 1, 1]) * (u1 + kp31)
+                        + fyp(x + h, w[i - 1, 0], w[i - 1, 1]) * (u2 + kp32));
 
                     u1 = u1 + (kp11 + 2 * kp21 + 2 * kp31 + kp41) / 6;
                     u2 = u2 + (kp12 + 2 * kp22 + 2 * kp32 + kp42) / 6;
                 }
 
-                if ((Math.Abs(w1[N]) - beta) <= Tol) {
-                    for (int i = 0; i <= N; i++)
-                    {
-                        double x = a + i * h;
-                        // output x, w1[i] w2[i]
-                    }
-
-                    // return; what ?
+                if ((Math.Abs(w[N, 0]) - beta) <= Tol) {
+                    return w;
                 }
 
-                tk = tk - ((w1[N] - beta) / u1);
+                //tk = tk - ((w1[N] - beta) / u1);
+                tk = tk - ((w[N, 0] - beta) / u1);
                 k++;
             }
 
             Console.WriteLine("Failed !! Max Iterations exceeded.");
 
-            return new double[] { };
+            return new double[,] { {double.NaN, double.NaN} };
         }
     }
 }
