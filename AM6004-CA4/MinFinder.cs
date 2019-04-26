@@ -69,7 +69,6 @@ namespace AM6004_CA4
             while (numIterations++ < N
                 //)
                && ((Math.Abs(g(prevValueArray) - g(newValueArray)) > Tol) || numIterations == 1)) // do not make the tolerance check if its the first iteration
-             //   && (((Math.Abs(prevValueArray[0] - newValueArray[0]) > Tol)&&(Math.Abs(prevValueArray[1] - newValueArray[1]) > Tol)) || numIterations == 1))
             {
                 double[] gPrimes = gp(newValueArray);
                 double xGradient = gPrimes[0];
