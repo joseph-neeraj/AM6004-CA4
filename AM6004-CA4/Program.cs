@@ -11,13 +11,13 @@ namespace AM6004_CA4
     {
         static void Main(string[] args)
         {
-            RunGradientDescent();
+            //RunGradientDescent();
             Console.WriteLine();
 
             RunGradientDescentWithMom();
             Console.WriteLine();
 
-            RunNonLinearShooting();
+            //RunNonLinearShooting();
        
             Console.ReadLine();
         }
@@ -41,7 +41,9 @@ namespace AM6004_CA4
         {
             double alpha = 0.01;
             double gamma = 0.8;
-            double Tol = 0.001;
+            // The result seems to converge too early for Tol = 0.001. Hence, using a smaller value
+            //double Tol = 0.001;
+            double Tol = 0.00000001;
             int N = 1000;
             double[] x0 = { -1, 2 };
             int dim = 2;

@@ -67,7 +67,6 @@ namespace AM6004_CA4
             double viy = 0;
 
             while (numIterations++ < N
-                //)
                && ((Math.Abs(g(prevValueArray) - g(newValueArray)) > Tol) || numIterations == 1)) // do not make the tolerance check if its the first iteration
             {
                 double[] gPrimes = gp(newValueArray);
